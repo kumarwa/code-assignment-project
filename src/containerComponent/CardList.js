@@ -56,10 +56,10 @@ function CardList() {
       </div>
 
       {results.length === 0 && !loading && (
-        <Info type={'warn'} message={'No results found..'} />
+        <Info type={'warn'} message={'No results found'} />
       )}
 
-      {error && <Info type={'error'} message={'Error Encountered..'} />}
+      {error && <Info type={'error'} message={'Error Encountered'} />}
 
       <div className="cards">
         {results.map((item, index) => {
