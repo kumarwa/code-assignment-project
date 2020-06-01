@@ -5,7 +5,7 @@ import { API_END_POINT, CACHE_KEY_NAME, PAGE_SIZE } from '../../utils/constant';
 
 const constructUrl = (input, page) => {
   return input.length > 0
-    ? `${API_END_POINT}?name=${input}&pageSize=${100}&page=${page}`
+    ? `${API_END_POINT}?name=${input}&pageSize=${PAGE_SIZE}&page=${page}`
     : `${API_END_POINT}?pageSize=${PAGE_SIZE}&page=${page}`;
 };
 
@@ -17,6 +17,7 @@ export const retriveData = async (searchValue, page) => {
 
   //Search thru LocalStorage first when input search occuurs.
   if (searchValue.length === 0) {
+    // cachedData = cards.filter((card) => card.name.includes(searchValue));
     //if no input search, just try to retrive data from LS first
     cachedData = cards.filter((card) => card.page === page);
     if (cachedData.length > 0) {

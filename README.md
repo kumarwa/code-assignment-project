@@ -1,3 +1,22 @@
+> ## This app has build with following features
+>
+> - Show results in a card grid format with the image prominently displayed.
+> - Each card displays: Image, Name, Text, Set Name, and Type.
+> - Display a loading indicator when communicating with the API.
+> - Accommodates, at minimum, desktop and mobile.
+> - Initial fetch display the first 20 results returned by the API.
+> - Use custom **useInfiniteScroll** Component to handle Infinte Scrolling.
+> - Get additional pages with not load more than 20 cards for each request.
+> - Allow the user to search for cards by Name.
+> - Implemented with using **React hooks** and **React functional Components**.
+
+#### Additionally, below functionality have also been incorporated.
+
+> Search functionality allows you to search for a specific card name and if no card
+> data found for that search criteria then displays **No results found**
+
+> Displays **Error Encountered** when netwrok call fails during fetch request.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
