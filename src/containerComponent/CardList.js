@@ -55,7 +55,7 @@ function CardList() {
         <SearchBar input={input} onChangeHandle={handleChange} />
       </div>
 
-      {results.length === 0 && (
+      {results.length === 0 && !loading && (
         <Info type={'warn'} message={'No data found..'} />
       )}
 
