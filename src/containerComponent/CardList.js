@@ -56,7 +56,7 @@ function CardList() {
       </div>
 
       {results.length === 0 && !loading && (
-        <Info type={'warn'} message={'No data found..'} />
+        <Info type={'warn'} message={'No results found..'} />
       )}
 
       {error && <Info type={'error'} message={'Error Encountered..'} />}
