@@ -1,0 +1,142 @@
+:root {
+  --grey-100: #f7fafc;
+  --grey-200: #edf2f7;
+  --grey-300: #e2e8f0;
+  --grey-400: #cbd5e0;
+  --grey-500: #a0aec0;
+  --grey-600: #718096;
+  --grey-700: #4a5568;
+  --grey-800: #2d3748;
+  --grey-900: #1a202c;
+}
+
+.App {
+  text-align: center;
+}
+
+body {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  margin: 0 auto;
+  width: 100vw;
+  background: rgb(53, 54, 58);
+}
+
+.cards {
+  padding-top: 30px;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
+  padding: 1rem;
+  align-items: center;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+}
+
+.card-outer-container {
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+.card-outer-container img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.card-inner-container {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  left: 0;
+  bottom: 0;
+  padding: 0.75em 1em;
+  z-index: 2;
+  box-sizing: border-box;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: opacity 0.3s ease-in-out;
+}
+
+.card-outer-container:hover .card-inner-container {
+  opacity: 1;
+}
+
+input {
+  border-radius: 30px;
+  border: none;
+  width: 270px;
+  background: #ffffff;
+  margin-top: 10px;
+  font-size: 12px;
+  padding: 10px;
+  color: #d3d3d3;
+  outline: none;
+}
+
+.info-title {
+  padding-top: 15px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.info-title-warn {
+  color: #87cefa;
+}
+
+.info-title-error {
+  color: #ff0000;
+}
+
+input:focus {
+  color: #000000;
+}
+
+img {
+  height: 324px;
+  width: 297px;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 40px;
+  height: 40px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  text-align: center;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  color: var(--grey-800);
+}
