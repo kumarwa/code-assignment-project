@@ -15,8 +15,8 @@ export const retriveData = async (searchValue, page) => {
   const cards = await getCacheData(CACHE_KEY_NAME);
   let cachedData;
 
-  //Search thru LocalStorage first when input search occuurs.
   if (searchValue.length === 0) {
+    //Search thru LocalStorage first when input search occuurs.
     // cachedData = cards.filter((card) => card.name.includes(searchValue));
     //if no input search, just try to retrive data from LS first
     cachedData = cards.filter((card) => card.page === page);
