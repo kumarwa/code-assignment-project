@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import useInfiniteScroll from '../hooks/useInfinteScroll';
+import { WARN, ERROR } from '../utils/constant';
 
-import { Card } from '../components/Card';
-import { Info } from '../components/Info';
+import { CardList } from '../components/CardList';
+import { InfoDisplay } from '../components/InfoDisplay';
 import { Loader } from '../components/Loader';
 import { SearchBar } from '../components/SearchBar';
 import { retriveData } from '../services/dals/cardData';
 
-function CardList() {
+function CardDisplay() {
   //set state of the app
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -67,35 +68,14 @@ function CardList() {
 
   return (
     <>
-      <div>
-        <SearchBar input={input} onChangeHandle={handleChange} />
-      </div>
-
-      {results.length === 0 && !loading && (
-        <Info type={'warn'} message={'No results found'} />
-      )}
-
-      {error && <Info type={'error'} message={'Error Encountered'} />}
-
-      <div className="cards">
-        {results.map((item, index) => {
-          return (
-            <div key={index} className="card">
-              <Card info={item} />
-            </div>
-          );
-        })}
-      </div>
-
-      {endOfPage && <Info type={'warn'} message={'*** END OF PAGE ***'} />}
-
-      {loading && (
-        <div className="loading-container">
-          <Loader />
-        </div>
-      )}
+      <SearchBar input={input} onChangeHandle={handleChange} />
+      <InfoDisplay type={WARN} results={results.length} loading={loading} />
+      <InfoDisplay type={ERROR} error={error} />
+      <CardList cards={results} />
+      <InfoDisplay type={WARN} scroll={endOfPage} />
+      <Loader loading={loading} />
     </>
   );
 }
 
-export default CardList;
+export default CardDisplay;
