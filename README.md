@@ -24,3 +24,5 @@ In order to run the app locally, please execute below steps from command line ru
 1. Clone this repo
 2. yarn install
 3. yarn start
+
+If you ran into any issues due to dependecy problem with babel-jest, you may need to follow thru the steps suggested to correct it and worst case if could not able to fix it simply create .env in your project folder and add **SKIP_PREFLIGHT_CHECK=true** to .env and yarn start. This would address the issue.
