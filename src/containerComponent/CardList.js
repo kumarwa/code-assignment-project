@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import useInfiniteScroll from '../hooks/useInfinteScroll';
 
 import { Card } from '../components/Card';
@@ -13,21 +13,32 @@ function CardList() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [input, setInput] = useState('');
-  const [page, setPage] = useState(1);
+  const [moreScroll, setMoreScroll] = useState(true);
   const [, setIsFetching] = useInfiniteScroll(fetchMoreData);
+  const [endOfPage, setEndOfPage] = useState(false);
+
+  const page = useRef(0);
 
   //fetch data
   const loadData = async () => {
+    setEndOfPage(false);
     setLoading(true);
     setError(false);
     try {
-      const data = await retriveData(input, page);
+      const data = await retriveData(input, page.current);
       setResults([...results, ...data]);
+      const { next = '' } = data.length > 0 ? data[0] : [];
+      checkForMoreToScroll(next);
       setLoading(false);
-    } catch {
+    } catch (e) {
       setLoading(false);
       setError(true);
     }
+  };
+
+  const checkForMoreToScroll = (hasMoreRecords) => {
+    const isMoreScroll = hasMoreRecords.length > 0 ? true : false;
+    setMoreScroll(isMoreScroll);
   };
 
   //handle input change
@@ -38,14 +49,19 @@ function CardList() {
 
   //Load data once during app bootstarp.
   useEffect(() => {
-    setPage(1);
+    page.current = 1;
     loadData();
   }, [input]);
 
   //Gte more data when scroll occurs.
   function fetchMoreData() {
     setIsFetching(false);
-    setPage((prePage) => prePage + 1);
+    if (!moreScroll) {
+      setEndOfPage(true);
+      return;
+    }
+    setEndOfPage(false);
+    page.current++;
     loadData();
   }
 
@@ -70,6 +86,8 @@ function CardList() {
           );
         })}
       </div>
+
+      {endOfPage && <Info type={'warn'} message={'*** END OF PAGE ***'} />}
 
       {loading && (
         <div className="loading-container">
